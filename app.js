@@ -14,9 +14,7 @@ const app = express();
                //need to use 127.0.0.1:27017/<name of database>  // to get rid of deprecation values
 mongoose.connect("mongodb://127.0.0.1:27017/fruitsDB", {useNewUrlParser: true,useUnifiedTopology:true})
     .then(()=>console.log("connect db success"))
-    .catch((err)=>{console.error(err);
-}
-);
+    .catch((err)=>{console.error(err);});
 
 const fruitSchema = new mongoose.Schema({
     name:String,
@@ -50,13 +48,16 @@ Fruit.find().then((fruits)=>{
 
 Fruit.updateOne({_id:"64a7c6588aa2542cfb78035f"},{name:"Shreyash"}).catch((err)=>{console.error(err)})
 
-Fruit.find().then((fruits)=>{
-    console.log(fruits[0].name)
-    fruits.forEach((fruits)=>{
-        console.log(fruits.name)
-    })
-})
-.catch((err)=>{console.error(err)})
+// Fruit.find().then((fruits)=>{
+//     console.log(fruits[0].name)
+//     fruits.forEach((fruits)=>{
+//         console.log(fruits.name)
+//     })
+// })
+// .catch((err)=>{console.error(err)})
+
+Fruit.deleteOne({name:"Shreyash"}).then(()=>console.log("delet succese"))
+.catch((err)=>{console.error(err)});
 
 
 app.get("/", function(req, res) {
